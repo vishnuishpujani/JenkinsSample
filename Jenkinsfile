@@ -36,6 +36,7 @@ pipeline {
           }
           post {
               success {
+                  step([$class: 'JUnitResultArchiver', testResults: 'target/surefire-reports/TEST-*.xml'])
                   archiveArtifacts 'target/*.jar'
               }
 
