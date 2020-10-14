@@ -7,6 +7,12 @@ pipeline {
    }
 
     stages {
+        
+        stage('checkout){
+              steps {
+         git 'https://github.com/vishnuishpujani/JenkinsSample.git'      
+        }
+              }
       stage('Build') {
          steps {
             // Get some code from a GitHub repository 
