@@ -1,32 +1,41 @@
 pipeline {
     agent any
+    
+    tools {
+      maven "M2_HOME"
+   }
 
     stages {
-        stage ('Compile Stage') {
+      stage('Build') {
+         steps {
+            // Get some code from a GitHub repository 
+            git 'https://github.com/vishnuishpujani/JenkinsSample.git
+            sh "mvn -Dmaven.test.failure.ignore=true clean compile"
+         }
+         }
+      stage("Test") {
+          steps {
+            git 'https://github.com/vishnuishpujani/JenkinsSample.git'  
+            sh "mvn -Dmaven.test.failure.ignore=true clean test"
+            
+          }
 
-            steps {
-                withMaven(maven : 'M2_HOME') {
-                    sh 'mvn clean compile'
-                }
-            }
-        }
+      }
+      stage("Deploy") {
+          steps {
+            git 'https://github.com/vishnuishpujani/JenkinsSample.git'  
+            sh "mvn -Dmaven.test.failure.ignore=true clean install"
+            
+          }
+          post {
+              success {
+                  archiveArtifacts 'target/*.jar'
+              }
 
-        stage ('Testing Stage') {
-
-            steps {
-                withMaven(maven : 'M2_HOME') {
-                    sh 'mvn test'
-                }
-            }
-        }
+          }
 
 
-        stage ('Deployment Stage') {
-            steps {
-                withMaven(maven : 'M2_HOME') {
-                    sh 'mvn deploy'
-                }
-            }
-        }
-    }
-}
+      }
+
+      }
+   }
