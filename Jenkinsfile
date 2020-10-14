@@ -10,13 +10,13 @@ pipeline {
          steps {
             // Get some code from a GitHub repository 
             //git 'https://github.com/vishnuishpujani/JenkinsSample.git'
-            sh "mvn -Dmaven.test.failure.ignore=true clean compile"
+            sh "mvn clean compile"
          }
          }
       stage("Test") {
           steps {
             //git 'https://github.com/vishnuishpujani/JenkinsSample.git'  
-            sh "mvn -Dmaven.test.failure.ignore=true clean test"
+            sh "mvn clean test"
             
           }
 
@@ -24,7 +24,7 @@ pipeline {
       stage("Deploy") {
           steps {
             //git 'https://github.com/vishnuishpujani/JenkinsSample.git'  
-            sh "mvn -Dmaven.test.failure.ignore=true clean install"
+            sh "mvn clean install"
             
           }
           post {
