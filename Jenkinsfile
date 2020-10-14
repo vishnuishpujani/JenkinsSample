@@ -8,7 +8,7 @@ pipeline {
 
     stages {
         
-        stage('checkout){
+        stage('checkout'){
               steps {
          git 'https://github.com/vishnuishpujani/JenkinsSample.git'      
         }
