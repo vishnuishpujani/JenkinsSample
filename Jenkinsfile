@@ -4,6 +4,7 @@ pipeline {
     tools {
       maven "M2_HOME"
       jdk "JDK"
+      sonarQube "sonarQube"
    }
 
     stages {
