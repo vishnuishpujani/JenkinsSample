@@ -13,7 +13,7 @@ pipeline {
          git 'https://github.com/vishnuishpujani/JenkinsSample.git'      
         }
               }
-      stage('Build Code') {
+      stage('Build') {
          steps {
             // Get some code from a GitHub repository 
             //git 'https://github.com/vishnuishpujani/JenkinsSample.git'
