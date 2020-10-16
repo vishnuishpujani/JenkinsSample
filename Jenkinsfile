@@ -37,10 +37,9 @@ pipeline {
         }  
         
           stage("build & SonarQube analysis") {
-            agent any
             steps {
               withSonarQubeEnv('sonarQube') {
-                sh 'mvn clean package sonar:sonar'
+                bat "mvn clean package sonar:sonar"
               }
             }
           }
@@ -50,6 +49,8 @@ pipeline {
                 waitForQualityGate abortPipeline: true
               }
             }
+          }
+          
           }
           post {
               success {
@@ -62,5 +63,4 @@ pipeline {
 
       }
 
-      }
-   }
+
