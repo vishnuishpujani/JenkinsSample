@@ -14,7 +14,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.AfterTest;		
 public class NewTest {		
 	    private WebDriver driver;	
-	    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+	  //  private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 		@Test				
 		public void testEasy() {	
 			driver.get("http://demo.guru99.com/test/guru99home/");  
@@ -32,33 +32,33 @@ public class NewTest {
 		}	
 		
 
-	    @BeforeTest
-	    public void setUpStreams() {
-	        System.setOut(new PrintStream(outContent));
-	    }
+//	    @BeforeTest
+//	    public void setUpStreams() {
+//	        System.setOut(new PrintStream(outContent));
+//	    }
 
-	    @Test
-	    public void testAppConstructor() {
-	        try {
-	            new App();
-	        } catch (Exception e) {
-	            fail("Construction failed.");
-	        }
-	    }
-
-	    @Test
-	    public void testAppMain()
-	    {
-	        App.main(null);
-	        try {
-	            assertEquals("Hello World!" + System.getProperty("line.separator"), outContent.toString());
-	        } catch (AssertionError e) {
-	            fail("\"message\" is not \"Hello World!\"");
-	        }
-	    }
-
-	    @AfterTest
-	    public void cleanUpStreams() {
-	        System.setOut(null);
-	    }
+//	    @Test
+//	    public void testAppConstructor() {
+//	        try {
+//	            new App();
+//	        } catch (Exception e) {
+//	            fail("Construction failed.");
+//	        }
+//	    }
+//
+//	    @Test
+//	    public void testAppMain()
+//	    {
+//	        App.main(null);
+//	        try {
+//	            assertEquals("Hello World!" + System.getProperty("line.separator"), outContent.toString());
+//	        } catch (AssertionError e) {
+//	            fail("\"message\" is not \"Hello World!\"");
+//	        }
+//	    }
+//
+//	    @AfterTest
+//	    public void cleanUpStreams() {
+//	        System.setOut(null);
+//	    }
 }	
