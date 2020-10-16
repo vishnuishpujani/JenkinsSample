@@ -34,6 +34,28 @@ pipeline {
             bat "mvn clean install"
             
           }
+          
+         pipeline {
+        agent none
+        stages {
+          stage("build & SonarQube analysis") {
+            agent any
+            steps {
+              withSonarQubeEnv('sonarQube') {
+                sh 'mvn clean package sonar:sonar'
+              }
+            }
+          }
+          stage("Quality Gate") {
+            steps {
+              timeout(time: 1, unit: 'HOURS') {
+                waitForQualityGate abortPipeline: true
+              }
+            }
+          }
+        }
+      }
+      }
           post {
               success {
                   step([$class: 'JUnitResultArchiver', testResults: 'target/surefire-reports/TEST-*.xml'])
