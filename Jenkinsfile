@@ -34,10 +34,8 @@ pipeline {
             bat "mvn clean install"
             
           }
-          
-         pipeline {
-        agent none
-        stages {
+        }  
+        
           stage("build & SonarQube analysis") {
             agent any
             steps {
@@ -53,8 +51,6 @@ pipeline {
               }
             }
           }
-        }
-      }
           post {
               success {
                   step([$class: 'JUnitResultArchiver', testResults: 'target/surefire-reports/TEST-*.xml'])
