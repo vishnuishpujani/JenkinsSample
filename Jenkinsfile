@@ -52,14 +52,21 @@ pipeline {
             }
           }
         
-        stage("Deploy Docker"){
-            steps{
-                bat label : '', script: '''rm -rf dockerimg
-                FROM openjdk:8
-                EXPOSE 8080
-                ADD target/docker-my-app-1.0-SNAPSHOT.jar docker-my-app-1.0-SNAPSHOT.jar
-                ENTRYPOINT ["java","-jar","/my-app-1.0-SNAPSHOT"]'''
-        }}
+        stage('Docker Build') {
+      agent any
+      steps {
+        bat 'docker build -t vishnu95/test:latest .'
+      }
+    }
+    stage('Docker Push') {
+      agent any
+      steps {
+        withCredentials([usernamePassword(credentialsId: 'Dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+          bat "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+          bat 'docker push vishnu95/test:latest'
+        }
+      }
+    }
           
           }
           post {
