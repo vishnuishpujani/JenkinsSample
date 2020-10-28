@@ -7,7 +7,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;		
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;		
 import org.testng.annotations.Test;	
 import org.testng.annotations.BeforeTest;	
@@ -23,8 +23,8 @@ public class NewTest {
 		}	
 		@BeforeTest
 		public void beforeTest() {	
-			System.setProperty("webdriver.chrome.driver", "F:/chromedriver.exe");
-		    driver = new ChromeDriver();  
+			System.setProperty("webdriver.gecko.driver", "F:/geckodriver.exe");
+		    driver = new FirefoxDriver();  
 		}		
 		@AfterTest
 		public void afterTest() {
