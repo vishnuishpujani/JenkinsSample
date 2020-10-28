@@ -52,7 +52,7 @@ pipeline {
             }
           }
         
-        stage("Deploy"){
+        stage("Deploy Docker"){
             steps{
                 bat label : '', script: '''rm -rf dockerimg
                 FROM openjdk:8
