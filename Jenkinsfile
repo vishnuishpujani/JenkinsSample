@@ -67,6 +67,15 @@ pipeline {
         }
       }
     }
+    
+    stage("Deploy to kubernetes"){
+    steps{
+    bat "chmod +x changeTag.sh"
+    bat " ./changeTag.sh ${DOCKER_TAG}"
+    bat "kubectl create -f pods.yml"
+    bat "kubectl create -f service.yaml"
+   	}
+    }
           
           }
           post {

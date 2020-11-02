@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nodeapp
+  labels:
+    app: nodeapp
+spec:
+    replicas: 3
+    spec:
+      containers:
+      - name: nodeapp
+        image: vishnu95/test:tagVersion
+        ports:
+           - containerPort: 8080
