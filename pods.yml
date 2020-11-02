@@ -11,4 +11,4 @@ spec:
       - name: nodeapp
         image: vishnu95/test:latest
         ports:
-           - containerPort: 8080
+           - containerPort: 9898
