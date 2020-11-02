@@ -9,6 +9,6 @@ spec:
     spec:
       containers:
       - name: nodeapp
-        image: vishnu95/test:tagVersion
+        image: vishnu95/test:latest
         ports:
            - containerPort: 8080
