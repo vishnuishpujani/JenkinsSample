@@ -1,12 +1,5 @@
 pipeline {
-    agent {
-    kubernetes {
-      label 'promo-app'  // all your pods will be named with this prefix, followed by a unique id
-      idleMinutes 5  // how long the pod will live after no jobs have run on it
-      yamlFile 'pods.yaml'  // path to the pod definition relative to the root of our project
-      yamlFile 'service.yaml' 
-    }
-  }
+    agent any
     
     tools {
       maven "M2_HOME"
@@ -75,12 +68,12 @@ pipeline {
       }
     }
     
-//    stage("Deploy to kubernetes"){
-//        steps{
-  //  bat "kubectl create -f pods.yml"
-  //  bat "kubectl create -f service.yaml"
-   //	}
-   // }
+    stage("Deploy to kubernetes"){
+        steps{
+    bat "kubectl create -f pods.yml"
+   bat "kubectl create -f service.yaml"
+   	}
+    }
           
           }
           post {
