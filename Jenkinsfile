@@ -17,7 +17,7 @@ pipeline {
          steps {
             // Get some code from a GitHub repository 
             //git 'https://github.com/vishnuishpujani/JenkinsSample.git'
-            bat "mvn clean compile"
+            sh "mvn clean compile"
          }
          }
       //stage("Test") {
@@ -31,7 +31,7 @@ pipeline {
       stage("Deploy") {
           steps {
             git 'https://github.com/vishnuishpujani/JenkinsSample.git'  
-            bat "mvn clean install"
+            sh "mvn clean install"
             
           }
         }  
@@ -39,7 +39,7 @@ pipeline {
           stage("build & SonarQube analysis") {
             steps {
               withSonarQubeEnv('sonarQube') {
-                bat "mvn clean package sonar:sonar"
+                sh "mvn clean package sonar:sonar"
               }
             }
           }
@@ -55,23 +55,23 @@ pipeline {
         stage('Docker Build') {
       agent any
       steps {
-        bat 'docker build -t vishnu95/test:latest .'
+        sh 'docker build -t vishnu95/test:latest .'
       }
     }
     stage('Docker Push') {
       agent any
       steps {
         withCredentials([usernamePassword(credentialsId: 'Dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-          bat "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-          bat 'docker push vishnu95/test:latest'
+          sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+          sh 'docker push vishnu95/test:latest'
         }
       }
     }
     
     stage("Deploy to kubernetes"){
         steps{
-    bat "kubectl create -f pods.yaml"
-   bat "kubectl create -f service.yaml"
+    sh "kubectl create -f pods.yaml"
+   sh "kubectl create -f service.yaml"
    	}
     }
           
