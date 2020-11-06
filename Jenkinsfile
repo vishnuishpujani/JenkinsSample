@@ -70,7 +70,7 @@ pipeline {
     
     stage("Deploy to kubernetes"){
         steps{
-    bat "kubectl create -f pods.yml"
+    bat "kubectl create -f pods.yaml"
    bat "kubectl create -f service.yaml"
    	}
     }
