@@ -35,21 +35,21 @@ pipeline {
           }
         }  
         
-          stage("build & SonarQube analysis") {
-            steps {
-              withSonarQubeEnv('sonarQube') {
-                sh "mvn clean package sonar:sonar"
-              }
-            }
-          }
+       //   stage("build & SonarQube analysis") {
+         //   steps {
+          //    withSonarQubeEnv('sonarQube') {
+           //     sh "mvn clean package sonar:sonar"
+           //   }
+           // }
+         // }
         
-        stage("Quality Gate") {
-            steps {
-              timeout(time: 1, unit: 'HOURS') {
-                waitForQualityGate abortPipeline: true
-              }
-            }
-          }
+       // stage("Quality Gate") {
+        //    steps {
+         //     timeout(time: 1, unit: 'HOURS') {
+          //      waitForQualityGate abortPipeline: true
+          //    }
+          //  }
+         // }
         
         stage('Docker Build') {
       agent any
