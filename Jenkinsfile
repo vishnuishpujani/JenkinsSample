@@ -54,7 +54,7 @@ pipeline {
         stage('Docker Build') {
       agent any
       steps {
-        sh 'docker build -t vishnu95/test:latest .'
+        sh 'docker build -t vishnu95/test:latest'
       }
     }
     stage('Docker Push') {
