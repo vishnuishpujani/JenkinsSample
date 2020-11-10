@@ -66,11 +66,16 @@ pipeline {
         //}
      // }
    // }
-    
+        
+        
     stage("Deploy to kubernetes"){
         steps{
-    sh "kubectl create -f pods.yaml"
-   sh "kubectl create -f service.yaml"
+            kubernetesDeploy(kubeconfigId: 'kube',            
+
+                 configs: '*.yaml')
+    
+   // sh "kubectl create -f pods.yaml"
+   // sh "kubectl create -f service.yaml"
    	}
     }
           
