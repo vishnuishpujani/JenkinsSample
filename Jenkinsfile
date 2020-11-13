@@ -75,8 +75,8 @@ pipeline {
 
                  configs: '*.yaml')
     
-    //bat "kubectl create -f pods.yaml"
-   // bat "kubectl create -f service.yaml"
+    bat "kubectl create -f pods.yaml"
+    bat "kubectl create -f service.yaml"
    	}
     }
           
