@@ -14,10 +14,10 @@ spec:
       labels:
         app: java-app
     spec:
-	  terminationGracePeriodSeconds: 1
+      terminationGracePeriodSeconds: 1
       containers:
       - name: java-app
         image: vishnu95/test:latest
-		imagePullPolicy: Always
+	imagePullPolicy: Always
         ports:
         - containerPort: 8080
