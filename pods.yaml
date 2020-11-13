@@ -1,14 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nodeapp
+  name: java-app-deploy
   labels:
-    app: nodeapp
+    app: java-app
 spec:
-    replicas: 3
+  replicas: 3
+  selector:
+    matchLabels:
+      app: java-app
+  template:
+    metadata:
+      labels:
+        app: java-app
     spec:
+	  terminationGracePeriodSeconds: 1
       containers:
-      - name: nodeapp
+      - name: java-app
         image: vishnu95/test:latest
+		imagePullPolicy: Always
         ports:
-           - containerPort: 8080
+        - containerPort: 8080
