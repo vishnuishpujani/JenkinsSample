@@ -71,12 +71,12 @@ pipeline {
         
     stage("Deploy to kubernetes"){
         steps{
-           // kubernetesDeploy(kubeconfigId: 'kube',            
+            kubernetesDeploy(kubeconfigId: 'kube',            
 
-             //    configs: '*.yaml')
+                 configs: '*.yaml')
     
-    bat "kubectl create -f pods.yaml"
-    bat "kubectl create -f service.yaml"
+    //bat "kubectl create -f pods.yaml"
+   // bat "kubectl create -f service.yaml"
    	}
     }
           
