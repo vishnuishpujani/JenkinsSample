@@ -73,7 +73,7 @@ pipeline {
         steps{
             kubernetesDeploy(kubeconfigId: 'kube',            
 
-                 configs: '*.yaml')
+                 configs: '*.conf')
     
     bat "kubectl create -f pods.yaml"
     bat "kubectl create -f service.yaml"
