@@ -17,7 +17,7 @@ pipeline {
          steps {
             // Get some code from a GitHub repository 
             //git 'https://github.com/vishnuishpujani/JenkinsSample.git'
-            bat "mvn clean compile"
+            sh "mvn clean compile"
          }
          }
       //stage("Test") {
@@ -31,7 +31,7 @@ pipeline {
       stage("Deploy") {
           steps {
             git 'https://github.com/vishnuishpujani/JenkinsSample.git'  
-            bat "mvn clean install"
+            sh "mvn clean install"
             
           }
         }  
@@ -75,8 +75,8 @@ pipeline {
 
                  configs: '*.yaml')
     
-    bat "kubectl create -f pods.yaml"
-    bat "kubectl create -f service.yaml"
+//    bat "kubectl create -f pods.yaml"
+  //  bat "kubectl create -f service.yaml"
    	}
     }
           
