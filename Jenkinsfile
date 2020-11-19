@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     tools {
-        jdk "JDK"
+        //jdk "JDK"
       maven "M2_HOME"
    }
 
